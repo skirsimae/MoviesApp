@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MoviesTableViewCell: UITableViewCell {
+class MoviesCatalogTableViewCell: UITableViewCell {
 
     @IBOutlet weak var movieImage: UIImageView!
     @IBOutlet weak var movieLabel: UILabel!

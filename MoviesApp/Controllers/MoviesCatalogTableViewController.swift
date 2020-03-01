@@ -1,5 +1,5 @@
 //
-//  TableViewController.swift
+//  MoviesCatalogTableViewController.swift
 //  MoviesApp
 //
 //  Created by SilvaKirsimae on 22/11/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewController: UITableViewController, MovieManagerDelegate {
+class MoviesCatalogTableViewController: UITableViewController, MovieManagerDelegate {
     func didUpdateMovies(_ movieManager: MovieManager, movies: Movie) {
         DispatchQueue.main.async {
             self.movies = Movie.init(results: movies.results)
@@ -16,7 +16,9 @@ class TableViewController: UITableViewController, MovieManagerDelegate {
         }
     }
     var movies: Movie?
+    var selectedRow: Int?
     
+    @IBOutlet var moviesTable: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,7 +39,7 @@ class TableViewController: UITableViewController, MovieManagerDelegate {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MoviesTableViewCell") as? MoviesTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MoviesTableViewCell") as? MoviesCatalogTableViewCell else {
             return UITableViewCell()
         }
         cell.movieLabel.text = movies?.results[indexPath.row].title
@@ -51,5 +53,18 @@ class TableViewController: UITableViewController, MovieManagerDelegate {
         cell.movieImage.image = UIImage(data: imageData)
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        selectedRow = indexPath.row
+        performSegue(withIdentifier: "movieDetailSegue", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? MovieDetailViewController {
+            destination.movie = movies?.results[selectedRow ?? 0]
+        }
+    }
 
 }
+
