@@ -16,4 +16,6 @@ struct Results: Codable {
     let title: String
     let id: Int
     let poster_path: String
+    let release_date: String
+    let overview: String
 }
