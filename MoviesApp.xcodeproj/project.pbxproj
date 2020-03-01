@@ -18,6 +18,7 @@
 		486A881F238C460C002DEE72 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486A881E238C460C002DEE72 /* Movie.swift */; };
 		486A8821238C463D002DEE72 /* MovieManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486A8820238C463D002DEE72 /* MovieManager.swift */; };
 		48831EBA23F94FDB00947227 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48831EB923F94FDB00947227 /* Constants.swift */; };
+		48831EBC23F9741500947227 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48831EBB23F9741500947227 /* MovieDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		486A881E238C460C002DEE72 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		486A8820238C463D002DEE72 /* MovieManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieManager.swift; sourceTree = "<group>"; };
 		48831EB923F94FDB00947227 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		48831EBB23F9741500947227 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 			children = (
 				486A881323883E15002DEE72 /* MoviesCatalogTableViewController.swift */,
 				486A8815238C2BF8002DEE72 /* MoviesCatalogTableViewCell.swift */,
+				48831EBB23F9741500947227 /* MovieDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 				481624CD2387E79200226EED /* AppDelegate.swift in Sources */,
 				481624D72387E79200226EED /* MoviesApp.xcdatamodeld in Sources */,
 				486A8821238C463D002DEE72 /* MovieManager.swift in Sources */,
+				48831EBC23F9741500947227 /* MovieDetailViewController.swift in Sources */,
 				486A881F238C460C002DEE72 /* Movie.swift in Sources */,
 				486A8817238C2BF8002DEE72 /* MoviesCatalogTableViewCell.swift in Sources */,
 				481624CF2387E79200226EED /* SceneDelegate.swift in Sources */,
