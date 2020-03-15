@@ -23,7 +23,7 @@ class MoviesCatalogTableViewController: UITableViewController, MovieManagerDeleg
         super.viewDidLoad()
         
         var movieManager = MovieManager()
-        movieManager.delegate = self
+        movieManager.movieDelegate = self
         movieManager.fetchMovies()
     }
 

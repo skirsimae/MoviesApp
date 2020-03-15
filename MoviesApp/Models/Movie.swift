@@ -19,3 +19,13 @@ struct Results: Codable {
     let release_date: String
     let overview: String
 }
+
+struct Info: Codable {
+    let genres: [Genres]
+}
+
+struct Genres: Codable {
+    let name: String
+}
+
+
