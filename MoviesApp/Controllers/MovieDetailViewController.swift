@@ -19,27 +19,16 @@ class MovieDetailViewController: UITableViewController, MovieInfoDelegate {
     func didUpdateGenres(_ movieManager: MovieManager, info: Info) {
         DispatchQueue.main.async {
             self.info = Info.init(genres: info.genres)
-            var genres: String = ""
             self.genresLabel.text = ""
             
-            
             for genre in info.genres {
-                genres = (self.genresLabel.text ?? "") + "\(genre.name), "
-                self.genresLabel.text = genres
+                self.genresLabel.text = (self.genresLabel.text ?? "") + "\(genre.name), "
             }
-            
-            //Todo: remove comma at the end of the genre list
-
-//            let size = genres.count
-//            let lastWord = genres.index(genres.endIndex, offsetBy: -size)
-//            var last = genres[lastWord...]
-//            let characters: Set<Character> = [" ", ","]
-//            last.removeAll(where: { characters.contains($0) })
-
+            //Remove last two characters (comma and space) from the string
+            self.genresLabel.text = String(self.genresLabel.text?.dropLast(2) ?? "")
             self.tableView.reloadData()
         }
     }
-    
     
     var movie: Results?
     var movieManager = MovieManager()
