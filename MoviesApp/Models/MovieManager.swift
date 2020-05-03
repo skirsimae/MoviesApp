@@ -16,6 +16,10 @@ protocol MovieInfoDelegate {
     func didUpdateGenres(_ movieManager: MovieManager, info: Info)
 }
 
+protocol MovieTrailerDelegate {
+    func didFetchTrailer(_ movieManager: MovieManager, videos: Videos)
+}
+
 struct MovieManager {
     let key = moviesAPIKey
     let baseURL = "https://api.themoviedb.org/3/movie/"
@@ -23,6 +27,7 @@ struct MovieManager {
     let movieDetailsURL: String = "271110?api_key="
     var movieDelegate: MovieManagerDelegate?
     var infoDelegate: MovieInfoDelegate?
+    var trailerDelegate: MovieTrailerDelegate?
     
     func fetchMovies() {
         let url = URL(string: "\(baseURL)\(popularMoviesURL)\(key)&page=1")!
@@ -59,7 +64,7 @@ struct MovieManager {
         guard let id = movie?.id else { return }
 
         let url = URL(string: "\(baseURL)\(id)?api_key=\(key)&language=en-US")!
-//        var genres: [Genres] = []
+        print(url)
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { data, response, error in
             if let error = error {
@@ -78,11 +83,6 @@ struct MovieManager {
                 let decoder = JSONDecoder()
                 let results = try decoder.decode(Info.self, from: data)
                 self.infoDelegate?.didUpdateGenres(self, info: results)
-//                let genres = results.genres
-//                for genre in results.genres {
-//                    print(genre.name)
-//                    genres.append(genre.name)
-//                }
              }
              catch {
                  debugPrint(error)
@@ -91,7 +91,40 @@ struct MovieManager {
         }
         //Start the task
         task.resume()
-//        return genres
+    }
+    
+    func fetchTrailer(movie: Results?) {
+        guard let id = movie?.id else { return }
+        
+        let url = URL(string: "\(baseURL)\(id)/videos?api_key=\(key)&language=en-US")!
+         let session = URLSession(configuration: .default)
+         let task = session.dataTask(with: url) { data, response, error in
+             if let error = error {
+                  fatalError("Error: \(error.localizedDescription)")
+              }
+              guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                  fatalError("Error: invalid HTTP response code")
+              }
+            print (response)
+             
+              guard let data = data else {
+                  fatalError("Error: missing response data")
+              }
+             print(data)
+
+              do {
+                let decoder = JSONDecoder()
+                let results = try decoder.decode(Videos.self, from: data)
+                self.trailerDelegate?.didFetchTrailer(self, videos: results)
+              }
+              catch {
+                  debugPrint(error)
+                  print("Error: \(error.localizedDescription)")
+              }
+         }
+         //Start the task
+         task.resume()
+        
     }
 }
 

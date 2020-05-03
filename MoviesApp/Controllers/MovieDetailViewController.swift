@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import AVFoundation
+import AVKit
 
-class MovieDetailViewController: UITableViewController, MovieInfoDelegate {
+class MovieDetailViewController: UITableViewController, MovieInfoDelegate, MovieTrailerDelegate {
     @IBOutlet weak var movieTitleLabel: UILabel!
     @IBOutlet weak var movieImage: UIImageView!
     @IBOutlet weak var genresLabel: UILabel!
@@ -30,17 +32,26 @@ class MovieDetailViewController: UITableViewController, MovieInfoDelegate {
         }
     }
     
+    func didFetchTrailer(_ movieManager: MovieManager, videos: Videos) {
+        DispatchQueue.main.async {
+            self.videos = Videos.init(results: videos.results)
+        }
+    }
+    
     var movie: Results?
     var movieManager = MovieManager()
     var info: Info?
+    var videos: Videos?
     
     override func viewWillAppear(_ animated: Bool) {
         movieManager.fetchGenre(movie: movie)
+        movieManager.fetchTrailer(movie: movie)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        movieManager.infoDelegate = self
+        movieManager.infoDelegate = self as MovieInfoDelegate
+        movieManager.trailerDelegate = self as MovieTrailerDelegate
         
         movieTitleLabel.text = movie?.title
         let imageUrlString = "https://image.tmdb.org/t/p/w500/"

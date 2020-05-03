@@ -28,4 +28,12 @@ struct Genres: Codable {
     let name: String
 }
 
+struct Videos: Codable {
+    let results: [Trailers]
+}
+
+struct Trailers: Codable {
+    let key: String
+}
+
 
