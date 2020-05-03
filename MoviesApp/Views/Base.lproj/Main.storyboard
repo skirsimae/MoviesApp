@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -99,6 +100,9 @@
                                     <state key="normal" title="Watch Trailer">
                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     </state>
+                                    <connections>
+                                        <segue destination="DZs-Vt-Bg1" kind="show" id="AA4-L4-SDo"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FcX-9v-cnQ">
                                     <rect key="frame" x="21" y="311" width="372" height="35"/>
@@ -223,6 +227,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mD8-D5-Xe4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="708.69565217391312" y="-542.41071428571422"/>
+        </scene>
+        <!--Player View Controller-->
+        <scene sceneID="DfR-lF-q34">
+            <objects>
+                <viewController id="DZs-Vt-Bg1" customClass="WKYTPlayerViewController" customModule="MoviesApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Dd4-FR-dJu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FTv-qm-kvU" customClass="WKYTPlayerView">
+                                <rect key="frame" x="0.0" y="342" width="414" height="212"/>
+                                <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="212" id="vNi-u8-UO4"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="FTv-qm-kvU" firstAttribute="trailing" secondItem="niP-oK-EO7" secondAttribute="trailing" id="Gbv-Dk-IY1"/>
+                            <constraint firstItem="FTv-qm-kvU" firstAttribute="leading" secondItem="niP-oK-EO7" secondAttribute="leading" id="OFv-l6-XeL"/>
+                            <constraint firstItem="FTv-qm-kvU" firstAttribute="centerY" secondItem="Dd4-FR-dJu" secondAttribute="centerY" id="Z74-Ak-foz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="niP-oK-EO7"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="xIU-Eh-Om5"/>
+                    <connections>
+                        <outlet property="playerView" destination="FTv-qm-kvU" id="KlI-hg-PiM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gGu-iI-T1d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1594.2028985507247" y="-540.40178571428567"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jgg-mF-TXT">

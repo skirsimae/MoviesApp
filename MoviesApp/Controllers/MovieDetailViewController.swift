@@ -17,6 +17,15 @@ class MovieDetailViewController: UITableViewController, MovieInfoDelegate, Movie
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       if let playerVC = segue.destination as? WKYTPlayerViewController {
+
+        guard let key = videos?.results[0].key else { return }
+        print(key)
+        playerVC.key = key
+       }
+    }
+
     
     func didUpdateGenres(_ movieManager: MovieManager, info: Info) {
         DispatchQueue.main.async {
