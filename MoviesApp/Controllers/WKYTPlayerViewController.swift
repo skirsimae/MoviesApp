@@ -11,6 +11,10 @@ import YoutubePlayer_in_WKWebView
 
 class WKYTPlayerViewController: UIViewController {
     
+    override var shouldAutorotate: Bool {
+        return true
+    }
+    
     @IBOutlet weak var playerView: WKYTPlayerView!
     var key: String!
     

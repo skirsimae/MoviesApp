@@ -240,7 +240,7 @@
                                 <rect key="frame" x="0.0" y="342" width="414" height="212"/>
                                 <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="212" id="vNi-u8-UO4"/>
+                                    <constraint firstAttribute="width" secondItem="FTv-qm-kvU" secondAttribute="height" multiplier="207:106" id="OHU-tJ-BJo"/>
                                 </constraints>
                             </view>
                         </subviews>
