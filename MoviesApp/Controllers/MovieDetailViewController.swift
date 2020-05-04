@@ -16,6 +16,7 @@ class MovieDetailViewController: UITableViewController, MovieInfoDelegate, Movie
     @IBOutlet weak var genresLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
+    @IBOutlet weak var trailerButton: UIButton!
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        if let playerVC = segue.destination as? WKYTPlayerViewController {
@@ -26,7 +27,6 @@ class MovieDetailViewController: UITableViewController, MovieInfoDelegate, Movie
        }
     }
 
-    
     func didUpdateGenres(_ movieManager: MovieManager, info: Info) {
         DispatchQueue.main.async {
             self.info = Info.init(genres: info.genres)
@@ -44,6 +44,8 @@ class MovieDetailViewController: UITableViewController, MovieInfoDelegate, Movie
     func didFetchTrailer(_ movieManager: MovieManager, videos: Videos) {
         DispatchQueue.main.async {
             self.videos = Videos.init(results: videos.results)
+            self.trailerButton.isEnabled = true
+            self.trailerButton.backgroundColor = .link
         }
     }
     
@@ -61,7 +63,6 @@ class MovieDetailViewController: UITableViewController, MovieInfoDelegate, Movie
         super.viewDidLoad()
         movieManager.infoDelegate = self as MovieInfoDelegate
         movieManager.trailerDelegate = self as MovieTrailerDelegate
-        
         movieTitleLabel.text = movie?.title
         let imageUrlString = "https://image.tmdb.org/t/p/w500/"
         let imageUrl = URL(string: imageUrlString + (movie?.poster_path ?? ""))

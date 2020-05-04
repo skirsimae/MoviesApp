@@ -31,6 +31,7 @@ struct MovieManager {
     
     func fetchMovies() {
         let url = URL(string: "\(baseURL)\(popularMoviesURL)\(key)&page=1")!
+        print(url)
         let session = URLSession(configuration: .default)
         
         let task = session.dataTask(with: url) { data, response, error in
@@ -71,7 +72,7 @@ struct MovieManager {
                  fatalError("Error: \(error.localizedDescription)")
              }
              guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                 fatalError("Error: invalid HTTP response code")
+                return
              }
             
              guard let data = data else {
@@ -103,7 +104,7 @@ struct MovieManager {
                   fatalError("Error: \(error.localizedDescription)")
               }
               guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                  fatalError("Error: invalid HTTP response code")
+                  return
               }
             print (response)
              
